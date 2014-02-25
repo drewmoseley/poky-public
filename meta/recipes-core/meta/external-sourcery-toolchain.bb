@@ -61,7 +61,9 @@ do_install() {
 	fi
 
 	rm ${D}${sysconfdir}/rpc
-	rm -r ${D}${datadir}/zoneinfo
+	rmdir ${D}${sysconfdir}
+
+	rm -rf ${D}${datadir}/zoneinfo
 
 	mv ${D}${libdir}/bin/* ${D}${bindir}/
 	if [ -e ${D}${libdir}/bin/.debug ]; then
@@ -87,7 +89,7 @@ external_toolchain_sysroot_adjust() {
 	install -d ${SYSROOT_DESTDIR}/usr/lib
 }
 
-PACKAGES =+ "libgcc libgcc-dev libstdc++ libstdc++-dev libstdc++-staticdev linux-libc-headers linux-libc-headers-dev gdbserver gdbserver-dbg"
+PACKAGES =+ "libgcc libgcc-dev libstdc++ libstdc++-dev libstdc++-staticdev linux-libc-headers linux-libc-headers-dev gdbserver gdbserver-dbg libatomic libatomic-dev"
 
 # This test should be fixed to ignore .a files in .debug dirs
 INSANE_SKIP_${PN}-dbg = "staticdev"
@@ -97,6 +99,7 @@ INSANE_SKIP_${PN}-utils += "ldflags"
 INSANE_SKIP_libstdc++ += "ldflags"
 INSANE_SKIP_libgcc += "ldflags"
 INSANE_SKIP_gdbserver += "ldflags"
+INSANE_SKIP_libatomic += "ldflags"
 
 PKG_${PN} = "eglibc"
 PKG_${PN}-dev = "eglibc-dev"
@@ -139,6 +142,12 @@ FILES_linux-libc-headers = "${includedir}/asm* \
 "
 FILES_gdbserver = "${bindir}/gdbserver ${libdir}/bin/sysroot-gdbserver"
 FILES_gdbserver-dbg = "${bindir}/.debug/gdbserver"
+
+FILES_${PN} += "${prefix}/libexec/*"
+FILES_${PN}-dbg += "${prefix}/libexec/*/.debug"
+
+FILES_libatomic = "${libdir}/libatomic.so.*"
+FILES_libatomic-dev = "${libdir}/libatomic.so"
 
 CSL_VER_MAIN ??= ""
 
