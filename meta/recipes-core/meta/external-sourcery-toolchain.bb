@@ -61,7 +61,7 @@ do_install() {
 	fi
 
 	rm ${D}${sysconfdir}/rpc
-	rmdir ${D}${sysconfdir}
+	find ${D}${sysconfdir} ${D}/usr/sbin ${D}/sbin -maxdepth 0 -type d -empty | xargs --no-run-if-empty rmdir
 
 	rm -rf ${D}${datadir}/zoneinfo
 
