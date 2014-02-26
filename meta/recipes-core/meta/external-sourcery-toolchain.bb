@@ -89,7 +89,7 @@ external_toolchain_sysroot_adjust() {
 	install -d ${SYSROOT_DESTDIR}/usr/lib
 }
 
-PACKAGES =+ "libgcc libgcc-dev libstdc++ libstdc++-dev libstdc++-staticdev linux-libc-headers linux-libc-headers-dev gdbserver gdbserver-dbg libatomic libatomic-dev"
+PACKAGES =+ "libgcc libgcc-dev libstdc++ libstdc++-dev libstdc++-staticdev linux-libc-headers linux-libc-headers-dev gdbserver gdbserver-dbg libatomic libatomic-dev libquadmath libquadmath-dev libquadmath-staticdev"
 
 # This test should be fixed to ignore .a files in .debug dirs
 INSANE_SKIP_${PN}-dbg = "staticdev"
@@ -100,6 +100,7 @@ INSANE_SKIP_libstdc++ += "ldflags"
 INSANE_SKIP_libgcc += "ldflags"
 INSANE_SKIP_gdbserver += "ldflags"
 INSANE_SKIP_libatomic += "ldflags"
+INSANE_SKIP_libquadmath += "ldflags"
 
 PKG_${PN} = "eglibc"
 PKG_${PN}-dev = "eglibc-dev"
@@ -123,6 +124,9 @@ PKGV_linux-libc-headers = "${CSL_VER_KERNEL}"
 PKGV_linux-libc-headers-dev = "${CSL_VER_KERNEL}"
 PKGV_gdbserver = "${CSL_VER_GDB}"
 PKGV_gdbserver-dbg = "${CSL_VER_GDB}"
+PKGV_libquadmath = "${CSL_VER_GCC}"
+PKGV_libquadmath-dev = "${CSL_VER_GCC}"
+PKGV_libquadmath-staticdev = "${CSL_VER_GCC}"
 
 FILES_libgcc = "${base_libdir}/libgcc_s.so.1"
 FILES_libgcc-dev = "${base_libdir}/libgcc_s.so"
@@ -146,6 +150,9 @@ FILES_gdbserver-dbg = "${bindir}/.debug/gdbserver"
 FILES_${PN} += "${prefix}/libexec/*"
 FILES_${PN}-dbg += "${prefix}/libexec/*/.debug"
 
+FILES_libquadmath = "${libdir}/libquadmath.so.*"
+FILES_libquadmath-dev = "${libdir}/libquadmath.so"
+FILES_libquadmath-staticdev = "${libdir}/libquadmath.so"
 FILES_libatomic = "${libdir}/libatomic.so.*"
 FILES_libatomic-dev = "${libdir}/libatomic.so"
 
