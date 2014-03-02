@@ -60,3 +60,5 @@ STOP
         fi
     done
 }
+
+TARGET_CC_ARCH += "${LDFLAGS}"

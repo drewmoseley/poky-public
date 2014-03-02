@@ -1,6 +1,8 @@
 require python.inc
 DEPENDS = "python-native bzip2 db gdbm openssl readline sqlite3 zlib"
-PR = "${INC_PR}.3"
+PR = "${INC_PR}.4"
+
+CFLAGS += " -Wl,--hash-style=gnu "
 
 DISTRO_SRC_URI ?= "file://sitecustomize.py"
 DISTRO_SRC_URI_linuxstdbase = ""

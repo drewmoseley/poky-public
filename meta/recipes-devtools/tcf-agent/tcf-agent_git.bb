@@ -44,3 +44,4 @@ do_install() {
 	oe_runmake install INSTALLROOT=${D}
 }
 
+TARGET_CC_ARCH += "${LDFLAGS}"

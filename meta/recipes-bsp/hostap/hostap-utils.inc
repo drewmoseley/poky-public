@@ -7,7 +7,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=0636e73ff0215e8d672dc4c32c317bb3 \
 			file://util.c;beginline=1;endline=9;md5=d3b9280851302e5ba34e5fb717489b6d"
 SECTION = "kernel/userland"
-PR = "r4"
+PR = "r5"
 
 SRC_URI = "http://hostap.epitest.fi/releases/hostap-utils-${PV}.tar.gz \
 	   file://hostap-fw-load.patch"
@@ -24,3 +24,4 @@ do_install() {
 	done
 }
 
+TARGET_CC_ARCH += "${LDFLAGS}"

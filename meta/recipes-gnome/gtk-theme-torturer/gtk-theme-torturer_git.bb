@@ -19,3 +19,4 @@ do_install() {
 }
 
 
+TARGET_CC_ARCH += "${LDFLAGS}"

@@ -6,7 +6,7 @@ SECTION = "console/utils"
 
 LICENSE = "GPLv2.0"
 LIC_FILES_CHKSUM = "file://version.h;beginline=1;endline=6;md5=2e7c59cb9e57e356ae81f50f4e4dfd99"
-PR = "r3"
+PR = "r4"
 
 inherit autotools
 
@@ -24,3 +24,5 @@ do_install() {
     install -m 0755 ${S}/setserial   ${D}${bindir}
     install -m 0644 ${S}/setserial.8 ${D}${mandir}/man8
 }
+
+TARGET_CC_ARCH += "${LDFLAGS}"

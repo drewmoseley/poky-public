@@ -38,3 +38,5 @@ do_install () {
 	install -d ${D}${sysconfdir}/init.d
 	install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/${INITSCRIPT_NAME}
 }
+
+TARGET_CC_ARCH += "${LDFLAGS}"

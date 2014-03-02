@@ -26,3 +26,4 @@ do_install() {
 		mandir=${mandir} DESTDIR=${D} install
 }
 
+TARGET_CC_ARCH += "${LDFLAGS}"
