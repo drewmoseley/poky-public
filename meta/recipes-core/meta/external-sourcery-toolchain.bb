@@ -37,6 +37,9 @@ do_install() {
 	# Use optimized files if available
 	sysroot="${EXTERNAL_TOOLCHAIN_SYSROOT}"
 
+	install -d ${D}${base_libdir}
+	install -d ${D}${sysconfdir}
+	install -d ${D}${base_sbindir}
 	cp -a $sysroot${base_libdir}/. ${D}${base_libdir}
 	cp -a $sysroot/etc/. ${D}${sysconfdir}
 	cp -a $sysroot/sbin/. ${D}${base_sbindir}
