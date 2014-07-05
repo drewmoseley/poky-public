@@ -229,7 +229,7 @@ if [ -f /etc/grub.d/00_header -a $grub_version -ne 0 ] ; then
     cat >$GRUBCFG <<_EOF
 menuentry "Linux" {
     search --no-floppy --fs-uuid $boot_uuid --set root
-    linux /vmlinuz root=PARTUUID=$root_part_uuid $rootwait rw $5 $3 $4 quiet
+    linux /vmlinuz root=PARTUUID=$root_part_uuid $rootwait rw $5 $3 $4
 }
 _EOF
     chmod 0444 $GRUBCFG
@@ -243,7 +243,7 @@ if [ $grub_version -eq 0 ] ; then
     echo "timeout 30" >> /boot/grub/menu.lst
     echo "title Live Boot/Install-Image" >> /boot/grub/menu.lst
     echo "root  (hd0,0)" >> /boot/grub/menu.lst
-    echo "kernel /vmlinuz root=$rootfs rw $3 $4 quiet" >> /boot/grub/menu.lst
+    echo "kernel /vmlinuz root=$rootfs rw $3 $4" >> /boot/grub/menu.lst
 fi
 
 cp /run/media/$1/vmlinuz /boot/
