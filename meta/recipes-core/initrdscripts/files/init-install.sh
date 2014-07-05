@@ -70,8 +70,18 @@ for hdname in $hdnamelist; do
         echo "Please answer y or n"
     done
     if [ "$answer" = "y" ]; then
-        TARGET_DEVICE_NAME=$hdname
-        break
+        while true; do
+	    echo "This will overwrite all data on $hdname"
+	    echo -n "Are you sure? [y/n] "
+	    read answer
+	    if [ "$answer" = "y" ]; then
+	        TARGET_DEVICE_NAME=$hdname
+	        break
+            elif [ "$answer" = "n" ]; then
+	        break
+	    fi
+	    echo "Please answer y or n"
+        done
     fi
 done
 
